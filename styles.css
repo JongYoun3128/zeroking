@@ -226,8 +226,8 @@ img {
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-medium);
+    font-size: 2rem;
+    color: #111;
     margin-bottom: 48px;
     font-weight: 300;
 }
@@ -1025,7 +1025,8 @@ img {
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 2rem;
+        color: #111;
     }
 
     .section-title {
