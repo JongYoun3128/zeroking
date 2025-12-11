@@ -2,6 +2,14 @@
 // ZERO KING - JavaScript
 // =============================================
 
+// 개인정보처리동의 토글 함수 (전역)
+function togglePrivacy() {
+    const privacyContent = document.getElementById('privacy-content');
+    if (privacyContent) {
+        privacyContent.classList.toggle('show');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Elements
     const navbar = document.getElementById('navbar');
@@ -230,13 +238,62 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // Form Validation (if contact form exists)
     // =============================================
-    const contactForm = document.querySelector('.contact-form');
+    const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Add form handling logic here
-            alert('문의가 접수되었습니다. 감사합니다!');
+            
+            // 필수 입력값 검증
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const region = document.getElementById('region').value.trim();
+            const privacy = document.getElementById('privacy').checked;
+            
+            if (!name) {
+                alert('이름을 입력해주세요.');
+                document.getElementById('name').focus();
+                return;
+            }
+            
+            if (!phone) {
+                alert('전화번호를 입력해주세요.');
+                document.getElementById('phone').focus();
+                return;
+            }
+            
+            if (!region) {
+                alert('희망지역을 입력해주세요.');
+                document.getElementById('region').focus();
+                return;
+            }
+            
+            if (!privacy) {
+                alert('개인정보 수집 및 이용에 동의해주세요.');
+                return;
+            }
+            
+            // 폼 데이터 수집
+            const formData = {
+                name: name,
+                phone: phone,
+                region: region,
+                message: document.getElementById('message').value.trim()
+            };
+            
+            console.log('폼 데이터:', formData);
+            
+            // 성공 메시지
+            alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.\n감사합니다!');
+            
+            // 폼 초기화
+            contactForm.reset();
+            
+            // 개인정보 내용 닫기
+            const privacyContent = document.getElementById('privacy-content');
+            if (privacyContent) {
+                privacyContent.classList.remove('show');
+            }
         });
     }
 
@@ -276,4 +333,5 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('%c ZERO KING ', 'background: #C91E1E; color: white; font-size: 24px; font-weight: bold; padding: 10px 20px;');
     console.log('%c 무인 스토어 프랜차이즈 ', 'color: #555; font-size: 14px;');
 });
+
 

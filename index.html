@@ -42,8 +42,11 @@
             <div class="hero-content">
                 <div class="hero-badge">PRESENTED BY POINT GROUND</div>
 
-                <p class="hero-subtitle">
+                <p class="hero-subtitle big-size">
                     누구나 쉽게 운영할 수 있는 무인 스토어
+                </p>
+                <p class="hero-subtitle small-size">
+                    누구나 쉽게 운영 <br />할수있는 무인 스토어
                 </p>
                 <div class="hero-cta">
                     <a href="#contact" class="btn btn-primary">창업 상담하기</a>
@@ -367,6 +370,95 @@
             </div>
         </section>
 
+        <!-- Cost Comparison Section -->
+        <section class="section cost-compare" id="cost-compare">
+            <div class="container">
+                <div class="section-header center">
+                    <h2 class="section-title">
+                        창업비용
+                        <span class="highlight">숨기지 않겠습니다</span>
+                    </h2>
+                </div>
+
+                <div class="compare-table-wrapper">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th class="item-col"></th>
+                                <th class="zeroking-col">제로킹</th>
+                                <th class="competitor-col">경쟁사 A</th>
+                                <th class="competitor-col">경쟁사 B</th>
+                                <th class="competitor-col">경쟁사 C</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="item-name">가맹비</td>
+                                <td class="zeroking-value highlight-value">
+                                    0원
+                                </td>
+                                <td>500만원</td>
+                                <td>1,000만원</td>
+                                <td>300만원</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">인테리어</td>
+                                <td class="zeroking-value highlight-value">
+                                    렌탈
+                                </td>
+                                <td>평당<br />100만원</td>
+                                <td>평당<br />130만원</td>
+                                <td>평당<br />120만원</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">기타시공</td>
+                                <td class="zeroking-value highlight-value">
+                                    인테리어<br />렌탈비용 포함
+                                </td>
+                                <td>실측 후 정확한<br />비용 안내</td>
+                                <td>실측 후 정확한<br />비용 안내</td>
+                                <td>실측 후 정확한<br />비용 안내</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">인테리어 컨셉비용</td>
+                                <td class="zeroking-value highlight-value">
+                                    0원
+                                </td>
+                                <td>100만원</td>
+                                <td>300만원</td>
+                                <td>150만원</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">로열티</td>
+                                <td class="zeroking-value highlight-value">
+                                    0원
+                                </td>
+                                <td>월매출<br />2%</td>
+                                <td>월매출<br />5%</td>
+                                <td>월매출<br />3%</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">
+                                    간판 및<br />키오스크/CCTV
+                                </td>
+                                <td class="zeroking-value highlight-value">
+                                    렌탈
+                                </td>
+                                <td>600만원</td>
+                                <td>300만원</td>
+                                <td>400만원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="compare-note">
+                    ※ 기타시공 : 에어컨 설치, 철거, 바닥평탄화, 천장보수, 어닝
+                    등
+                </p>
+            </div>
+        </section>
+
         <!-- Support System Section -->
         <section class="section support" id="support">
             <div class="container">
@@ -484,12 +576,99 @@
                         </div>
                     </div>
 
-                    <a
-                        href="tel:02-1811-8428"
-                        class="btn btn-primary btn-large"
-                    >
-                        상담 문의하기</a
-                    >
+                    <!-- 문의 폼 -->
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name"
+                                >이름 <span class="required">*</span></label
+                            >
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="이름을 입력해주세요"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"
+                                >전화번호 <span class="required">*</span></label
+                            >
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="연락 가능한 전화번호"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="region"
+                                >희망지역 <span class="required">*</span></label
+                            >
+                            <input
+                                type="text"
+                                id="region"
+                                name="region"
+                                placeholder="창업 희망 지역"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="message">상담내용</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                placeholder="문의하실 내용을 입력해주세요"
+                            ></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <span class="checkbox-text">
+                                    <span class="required">[필수]</span>
+                                    개인정보 수집 및 이용에 동의합니다.
+                                </span>
+                                <input
+                                    type="checkbox"
+                                    id="privacy"
+                                    name="privacy"
+                                    required
+                                />
+                                <span class="checkmark"></span>
+                            </label>
+                            <button
+                                type="button"
+                                class="privacy-link"
+                                onclick="togglePrivacy()"
+                            >
+                                내용보기
+                            </button>
+                            <div class="privacy-content" id="privacy-content">
+                                <p>
+                                    <strong>개인정보 수집 및 이용 동의</strong>
+                                </p>
+                                <p>
+                                    1. 수집항목: 이름, 전화번호, 희망지역,
+                                    상담내용
+                                </p>
+                                <p>2. 수집목적: 창업 상담 및 안내</p>
+                                <p>
+                                    3. 보유기간: 상담 완료 후 1년간 보관 후 파기
+                                </p>
+                                <p>
+                                    ※ 동의를 거부할 권리가 있으며, 동의 거부 시
+                                    상담 서비스 이용이 제한됩니다.
+                                </p>
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-large form-submit"
+                        >
+                            상담 신청하기
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
