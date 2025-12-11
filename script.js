@@ -4,73 +4,78 @@
 
 // 개인정보처리동의 토글 함수 (전역)
 function togglePrivacy() {
-    const privacyContent = document.getElementById('privacy-content');
+    const privacyContent = document.getElementById("privacy-content");
     if (privacyContent) {
-        privacyContent.classList.toggle('show');
+        privacyContent.classList.toggle("show");
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Elements
-    const navbar = document.getElementById('navbar');
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navbar = document.getElementById("navbar");
+    const mobileToggle = document.getElementById("mobile-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    const navLinks = document.querySelectorAll(".nav-menu a");
 
     // =============================================
     // Navbar Scroll Effect
     // =============================================
     let lastScroll = 0;
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener("scroll", function () {
         const currentScroll = window.pageYOffset;
-        
+
         // Add/remove scrolled class
         if (currentScroll > 50) {
-            navbar.classList.add('scrolled');
+            navbar.classList.add("scrolled");
         } else {
-            navbar.classList.remove('scrolled');
+            navbar.classList.remove("scrolled");
         }
-        
+
         lastScroll = currentScroll;
     });
 
     // =============================================
     // Mobile Menu Toggle
     // =============================================
-    mobileToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    mobileToggle.addEventListener("click", function () {
+        this.classList.toggle("active");
+        navMenu.classList.toggle("active");
+        document.body.style.overflow = navMenu.classList.contains("active")
+            ? "hidden"
+            : "";
     });
 
     // Close mobile menu when clicking a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
+    navLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+            mobileToggle.classList.remove("active");
+            navMenu.classList.remove("active");
+            document.body.style.overflow = "";
         });
     });
 
     // =============================================
     // Smooth Scroll for Navigation Links
     // =============================================
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            if (href.startsWith('#')) {
+    navLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+
+            if (href.startsWith("#")) {
                 e.preventDefault();
                 const target = document.querySelector(href);
-                
+
                 if (target) {
                     const navHeight = navbar.offsetHeight;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                    
+                    const targetPosition =
+                        target.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        navHeight;
+
                     window.scrollTo({
                         top: targetPosition,
-                        behavior: 'smooth'
+                        behavior: "smooth",
                     });
                 }
             }
@@ -82,14 +87,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+        rootMargin: "0px",
+        threshold: 0.1,
     };
 
     const animateOnScroll = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-visible');
+                entry.target.classList.add("animate-visible");
                 // Optional: unobserve after animation
                 // animateOnScroll.unobserve(entry.target);
             }
@@ -98,16 +103,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Elements to animate
     const animateElements = document.querySelectorAll(
-        '.section-content, .section-image, .core-feature, .support-card, .contact-content'
+        ".section-content, .section-image, .core-feature, .support-card, .contact-content"
     );
-    
-    animateElements.forEach(el => {
-        el.classList.add('animate-on-scroll');
+
+    animateElements.forEach((el) => {
+        el.classList.add("animate-on-scroll");
         animateOnScroll.observe(el);
     });
 
     // Add CSS for scroll animations
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
         .animate-on-scroll {
             opacity: 0;
@@ -128,12 +133,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(style);
 
     // Add staggered animation delay to grid items
-    document.querySelectorAll('.core-feature').forEach((el, index) => {
-        el.style.setProperty('--index', index);
+    document.querySelectorAll(".core-feature").forEach((el, index) => {
+        el.style.setProperty("--index", index);
     });
-    
-    document.querySelectorAll('.support-card').forEach((el, index) => {
-        el.style.setProperty('--index', index);
+
+    document.querySelectorAll(".support-card").forEach((el, index) => {
+        el.style.setProperty("--index", index);
     });
 
     // =============================================
@@ -142,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateCounter(element, target, duration = 2000) {
         let start = 0;
         const increment = target / (duration / 16);
-        
+
         const timer = setInterval(() => {
             start += increment;
             if (start >= target) {
@@ -157,17 +162,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // Parallax Effect for Hero Section
     // =============================================
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-content');
-    
-    window.addEventListener('scroll', function() {
+    const hero = document.querySelector(".hero");
+    const heroContent = document.querySelector(".hero-content");
+
+    window.addEventListener("scroll", function () {
         if (hero && heroContent) {
             const scrolled = window.pageYOffset;
             const heroHeight = hero.offsetHeight;
-            
+
             if (scrolled < heroHeight) {
                 heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-                heroContent.style.opacity = 1 - (scrolled / heroHeight);
+                heroContent.style.opacity = 1 - scrolled / heroHeight;
             }
         }
     });
@@ -175,31 +180,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // Active Navigation Link Highlight
     // =============================================
-    const sections = document.querySelectorAll('section[id]');
-    
+    const sections = document.querySelectorAll("section[id]");
+
     function highlightNavLink() {
         const scrollY = window.pageYOffset;
-        
-        sections.forEach(section => {
+
+        sections.forEach((section) => {
             const sectionHeight = section.offsetHeight;
             const sectionTop = section.offsetTop - 150;
-            const sectionId = section.getAttribute('id');
-            
+            const sectionId = section.getAttribute("id");
+
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === `#${sectionId}`) {
+                        link.classList.add("active");
                     }
                 });
             }
         });
     }
-    
-    window.addEventListener('scroll', highlightNavLink);
+
+    window.addEventListener("scroll", highlightNavLink);
 
     // Add active link style
-    const activeStyle = document.createElement('style');
+    const activeStyle = document.createElement("style");
     activeStyle.textContent = `
         .nav-menu a.active {
             color: var(--primary);
@@ -213,24 +218,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // Dice Animation on Core Model Section
     // =============================================
-    const diceElements = document.querySelectorAll('.dice');
-    
-    diceElements.forEach(dice => {
-        dice.addEventListener('mouseenter', function() {
-            this.style.transform = 'rotateY(180deg) scale(1.1)';
-            this.style.transition = 'transform 0.5s ease';
+    const diceElements = document.querySelectorAll(".dice");
+
+    diceElements.forEach((dice) => {
+        dice.addEventListener("mouseenter", function () {
+            this.style.transform = "rotateY(180deg) scale(1.1)";
+            this.style.transition = "transform 0.5s ease";
         });
-        
-        dice.addEventListener('mouseleave', function() {
-            this.style.transform = 'rotateY(0) scale(1)';
+
+        dice.addEventListener("mouseleave", function () {
+            this.style.transform = "rotateY(0) scale(1)";
         });
     });
 
     // =============================================
     // Block Hover Animation
     // =============================================
-    const blocks = document.querySelectorAll('.block');
-    
+    const blocks = document.querySelectorAll(".block");
+
     blocks.forEach((block, index) => {
         block.style.animationDelay = `${index * 0.1}s`;
     });
@@ -238,61 +243,97 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // Form Validation (if contact form exists)
     // =============================================
-    const contactForm = document.getElementById('contact-form');
-    
+    const contactForm = document.getElementById("contact-form");
+
+    // ⚠️ 아래 URL을 본인의 Google Apps Script 웹 앱 URL로 교체하세요!
+    const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzB6iIFfipOICBkLdMn0JSgfJR-z6UPkOVNH6HcHI5WID__fWG9u5ijh1KbRoqts7Uf/exec";
+
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener("submit", async function (e) {
             e.preventDefault();
-            
+
             // 필수 입력값 검증
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const region = document.getElementById('region').value.trim();
-            const privacy = document.getElementById('privacy').checked;
-            
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const region = document.getElementById("region").value.trim();
+            const privacy = document.getElementById("privacy").checked;
+
             if (!name) {
-                alert('이름을 입력해주세요.');
-                document.getElementById('name').focus();
+                alert("이름을 입력해주세요.");
+                document.getElementById("name").focus();
                 return;
             }
-            
+
             if (!phone) {
-                alert('전화번호를 입력해주세요.');
-                document.getElementById('phone').focus();
+                alert("전화번호를 입력해주세요.");
+                document.getElementById("phone").focus();
                 return;
             }
-            
+
             if (!region) {
-                alert('희망지역을 입력해주세요.');
-                document.getElementById('region').focus();
+                alert("희망지역을 입력해주세요.");
+                document.getElementById("region").focus();
                 return;
             }
-            
+
             if (!privacy) {
-                alert('개인정보 수집 및 이용에 동의해주세요.');
+                alert("개인정보 수집 및 이용에 동의해주세요.");
                 return;
             }
-            
+
             // 폼 데이터 수집
             const formData = {
                 name: name,
                 phone: phone,
                 region: region,
-                message: document.getElementById('message').value.trim()
+                message: document.getElementById("message").value.trim(),
             };
-            
-            console.log('폼 데이터:', formData);
-            
-            // 성공 메시지
-            alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.\n감사합니다!');
-            
-            // 폼 초기화
-            contactForm.reset();
-            
-            // 개인정보 내용 닫기
-            const privacyContent = document.getElementById('privacy-content');
-            if (privacyContent) {
-                privacyContent.classList.remove('show');
+
+            // 제출 버튼 비활성화 (중복 제출 방지)
+            const submitBtn = contactForm.querySelector(".form-submit");
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "전송 중...";
+            submitBtn.disabled = true;
+
+            try {
+                // Google Sheets로 데이터 전송
+                if (GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formData),
+                    });
+                }
+
+                console.log("폼 데이터:", formData);
+
+                // 성공 메시지
+                alert(
+                    "상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.\n감사합니다!"
+                );
+
+                // 폼 초기화
+                contactForm.reset();
+
+                // 개인정보 내용 닫기
+                const privacyContent =
+                    document.getElementById("privacy-content");
+                if (privacyContent) {
+                    privacyContent.classList.remove("show");
+                }
+            } catch (error) {
+                console.error("전송 오류:", error);
+                alert(
+                    "전송 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요."
+                );
+            } finally {
+                // 버튼 복원
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
             }
         });
     }
@@ -300,38 +341,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // Lazy Loading Images
     // =============================================
-    const lazyImages = document.querySelectorAll('img[data-src]');
-    
+    const lazyImages = document.querySelectorAll("img[data-src]");
+
     const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 img.src = img.dataset.src;
-                img.classList.add('loaded');
+                img.classList.add("loaded");
                 imageObserver.unobserve(img);
             }
         });
     });
-    
-    lazyImages.forEach(img => imageObserver.observe(img));
+
+    lazyImages.forEach((img) => imageObserver.observe(img));
 
     // =============================================
     // Preloader (Optional)
     // =============================================
-    window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-        
+    window.addEventListener("load", function () {
+        document.body.classList.add("loaded");
+
         // Trigger hero animations after load
         setTimeout(() => {
-            document.querySelector('.hero-content')?.classList.add('animate-visible');
+            document
+                .querySelector(".hero-content")
+                ?.classList.add("animate-visible");
         }, 300);
     });
 
     // =============================================
     // Console Welcome Message
     // =============================================
-    console.log('%c ZERO KING ', 'background: #C91E1E; color: white; font-size: 24px; font-weight: bold; padding: 10px 20px;');
-    console.log('%c 무인 스토어 프랜차이즈 ', 'color: #555; font-size: 14px;');
+    console.log(
+        "%c ZERO KING ",
+        "background: #C91E1E; color: white; font-size: 24px; font-weight: bold; padding: 10px 20px;"
+    );
+    console.log("%c 무인 스토어 프랜차이즈 ", "color: #555; font-size: 14px;");
 });
-
-
